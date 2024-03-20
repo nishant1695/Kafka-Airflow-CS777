@@ -53,11 +53,10 @@ Steps for setting up Docker and Airflow:
    USER root
    RUN apt-get update && \
        apt-get -y install git && \
-       apt-get clean \
-       apt-get kafka-python
-
+       apt-get clean
 
    USER airflow
+   RUN pip install kafka-python
    ```
 
 4. Then create a docker-compose.yaml file to link the image file created in the previous step to the container. This will allow us to access Airflow's console through the web browser. The following parameters were used to create the file:
