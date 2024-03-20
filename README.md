@@ -1,4 +1,4 @@
-# Kafka-Airflow-CS777
+# Kafka-Airflow
 Kafka and Airflow implementation for CS 777
 
 ## Introduction
