@@ -122,7 +122,7 @@ Steps for setting up Docker and Airflow:
     return data
    ```
 
-   Streaming data to Producer:
+   Streaming data to Producer Service:
 
    ```python
    def stream_data():
