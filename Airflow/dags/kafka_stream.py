@@ -1,3 +1,4 @@
+#imports
 import uuid
 from datetime import datetime
 from airflow import DAG
@@ -8,6 +9,7 @@ default_args = {
     'start_date': datetime(2024, 3, 15, 21, 00)
 }
 
+#Getting Data From API
 def get_data():
     import requests
 
@@ -17,6 +19,7 @@ def get_data():
 
     return res
 
+#Getting specific fields and formatting data for sending to the producer
 def format_data(res):
     data = {}
     location = res['location']
@@ -42,6 +45,7 @@ def stream_data():
     import time
     import logging
 
+    #Defining producer and the address of kafka server 
     producer = KafkaProducer(bootstrap_servers=['10.0.0.143:9092'], max_block_ms=5000)
     curr_time = time.time()
 
@@ -61,6 +65,7 @@ def stream_data():
             logging.error(f'An error occured: {e}')
             continue
 
+#Defining DAG
 with DAG('user_automation',
          default_args=default_args,
          schedule_interval='@daily',
