@@ -37,6 +37,50 @@ Similarly, open server.properties in the same folder and modify the following at
 2. log.dirs= Give the path for the folder created for kafka logs.
 3. zookeeper.connect= Specifies the address for the zookeeper service. Default is localhost:2181
 
+Once the configuration files are modified and saved, we can proceed to start the services.
+
+#### Starting Services
+For the following commands, our Kafka and Zookeeper files were unzipped at the following location: D:/Setups/Kafka/
+
+We'll pass the path of the zookeeper.properties file as an argument while starting the service. Use the following command to start the zookeeper service:
+
+```
+D:/Setups/Kafka/kafka/bin/windows/zookeeper-server-start.bat D:/Setups/Kafka/kafka/config/zookeeper.properties
+```
+
+Once zookeeper is up, we'll use the following commands to start the Kafka server:
+
+```
+D:/Setups/Kafka/kafka/bin/windows/kafka-server-start.bat D:/Setups/Kafka/kafka/config/server.properties
+```
+
+Once the Kafka server is up, we'll check for the already existing topics in the server. We can do so with the following command:
+
+```
+D:/Setups/Kafka/kafka/bin/windows/kafka-topics.bat --bootstrap-server=localhost:9092 --list
+```
+Note that we need to pass the current IP of the running Kafka server to check the existing topics.
+
+If the desired topic doesn't exist, we can create a new topic using the following command. Let's create a topic named "hello_world":
+
+```
+D:/Setups/Kafka/kafka/bin/windows/kafka-topics.bat --create --topic hello_world --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1
+```
+Once the topic is created, we can create a producer using the following command:
+
+```
+D:/Setups/Kafka/kafka/bin/windows/kafka-console-producer.bat --topic hello_world --bootstrap-server localhost:9092
+```
+
+Now we can create multiple consumers which will subscribe to a specific topic for information:
+
+```
+D:/Setups/Kafka/kafka/bin/windows/kafka-console-consumer.bat --topic hello_world --bootstrap-server localhost:9092
+```
+
+Running the above command in multiple terminals will create multiple consumers subscribed to the topic "hello_world"
+
+
 
 #### 2. Airflow
 Airflow is a powerful platform for programmatically authoring, scheduling, and monitoring workflows. While Airflow isn't officially supported on Windows OS, we can use Airflow on Windows using Docker. 
