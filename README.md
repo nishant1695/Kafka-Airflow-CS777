@@ -8,7 +8,7 @@ Apache Airflow is an open-source platform for developing, scheduling, and monito
 
 ## About the Dataset
 
-Instead of using a static database, we opted to use an open-source API called [Random User Generator](https://randomuser.me/) to simulate real-time data generation. We used Python code defined in an airflow DAG to periodically call the API to generate random user data for multiple users to simulate multiple users in a system submitting information through a form.
+Instead of using a static database, we opted to use an open-source API called [Random User Generator](https://randomuser.me/) to simulate real-time data generation. We used Python code defined in an airflow DAG to periodically call the API to generate random user data for multiple users to simulate multiple users in a system submitting information through one form.
 
 ## Environment
 There are 2 major components required for implementing a Kafka-Airflow pipeline:
